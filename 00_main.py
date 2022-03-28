@@ -2,6 +2,7 @@
 import random
 import time
 import pandas
+from turtle import *
 
 # Functions go here
 # Number checker to make sure user inputs correctly
@@ -198,23 +199,68 @@ def fmk_function():
     return fmk_data_frame
 
 
+# heart function
+def heart():
+    '''heart docstring'''
+    pendown()
+    begin_fill()
+    fillcolor('red')
+    left(135)
+    forward(140)
+    circle(-70, 180)
+    setheading(45)
+    circle(-70, 180)
+    forward(140)
+    end_fill()
+
+
+# 'i' function
+def i_draw():
+    '''i docstring'''
+    pendown()
+    begin_fill()
+    fillcolor('black')
+    setheading(90)
+    forward(220)
+    setheading(0)
+    forward(40)
+    setheading(270)
+    forward(220)
+    setheading(180)
+    forward(40)   
+    end_fill()
+
+
+# 'u' function
+def u_draw():
+    '''u docstring'''
+    pendown()
+    begin_fill()
+    fillcolor('black')
+    setheading(270)
+    forward(160)
+    circle(80, 180)
+    forward(160)
+    setheading(180)
+    forward(40)
+    setheading(270)
+    forward(150)
+    circle(-40, 180)
+    forward(150)   
+    setheading(180)
+    forward(40)
+    end_fill()
+
+
+
 # Main Routine
 # yes no list
-yes_no_list = [
-    ["yes", "y"],
-    ["no", "n"]
-]
+yes_no_list = ["yes", "no"]
 
-
-# main routine
 modes_list = [
     'Wheel of Activities',
-    'Fuck, Marry, Kill'
-]
-
-seaaion_states_list = [
-    'continue',
-    'end'
+    'Fuck, Marry, Kill',
+    'Secret ;)'
 ]
 
 # display modes and welcome message
@@ -225,7 +271,7 @@ time.sleep(1)
 session = ''
 while session != 'end':
     print('''
-Choose a mode (1 - 2):
+Choose a mode (1 - 3):
     ''')
     time.sleep(0.5)
 
@@ -238,7 +284,7 @@ Choose a mode (1 - 2):
     print()
 
     
-    mode_select = num_check("Choice:   ", "<error> please chose a number indicating a mode", int, 0, 3)
+    mode_select = num_check("Choice:   ", "<error> please chose a number indicating a mode", int, 0, 4)
     print()
     
     # play mode the=at is selected
@@ -248,10 +294,36 @@ Choose a mode (1 - 2):
     elif mode_select == 2:
         fmk_function()
 
+    elif mode_select == 3:
+        # define turtle colours
+        bgcolor('white')
+        pensize(3)
+        color('black')
+        time.sleep(3)
+        
+        # draw heart
+        goto(0, -100)
+        heart()
+        penup()
+
+        # draw 'i'
+        goto(-150, -100)
+        i_draw()
+        penup()
+
+        # draw 'u'
+        goto(100, 110)
+        u_draw()
+        time.sleep(3)
+
+
     print()
     # once mode finished 
-    session = string_checker("Continue Session? ", "<error> please enter 'continue' or 'end'.", seaaion_states_list)
-    if session == "continue":
+    session = string_checker("Continue Session? ", "<error> please enter yes / no.", yes_no_list)
+    if session == "yes":
         statement_generator('Lets Go', '!', "=")
+    
+    else:
+        session = 'end'
     
 statement_generator("Goodbye", ":", "-")
